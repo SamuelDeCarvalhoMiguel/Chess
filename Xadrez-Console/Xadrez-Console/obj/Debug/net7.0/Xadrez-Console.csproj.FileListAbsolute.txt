@@ -1,0 +1,15 @@
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\bin\Debug\net7.0\Xadrez-Console.exe
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\bin\Debug\net7.0\Xadrez-Console.deps.json
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\bin\Debug\net7.0\Xadrez-Console.runtimeconfig.json
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\bin\Debug\net7.0\Xadrez-Console.dll
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\bin\Debug\net7.0\Xadrez-Console.pdb
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\obj\Debug\net7.0\Xadrez-Console.csproj.AssemblyReference.cache
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\obj\Debug\net7.0\Xadrez-Console.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\obj\Debug\net7.0\Xadrez-Console.AssemblyInfoInputs.cache
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\obj\Debug\net7.0\Xadrez-Console.AssemblyInfo.cs
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\obj\Debug\net7.0\Xadrez-Console.csproj.CoreCompileInputs.cache
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\obj\Debug\net7.0\Xadrez-Console.dll
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\obj\Debug\net7.0\refint\Xadrez-Console.dll
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\obj\Debug\net7.0\Xadrez-Console.pdb
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\obj\Debug\net7.0\Xadrez-Console.genruntimeconfig.cache
+C:\Users\Sam\source\repos\Meus projetos\Chess\Xadrez-Console\Xadrez-Console\obj\Debug\net7.0\ref\Xadrez-Console.dll
