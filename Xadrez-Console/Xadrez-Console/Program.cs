@@ -10,7 +10,7 @@ namespace Xadrez_Console
 
             GameBoard board = new GameBoard(8, 8);
 
-            Console.WriteLine($"Position \n");
+            Screen.PrintBoard(board);
 
         }
     }
