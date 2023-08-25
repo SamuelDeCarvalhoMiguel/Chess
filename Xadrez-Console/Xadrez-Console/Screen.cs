@@ -12,10 +12,10 @@ namespace Xadrez_Console
             {
                 for (int j = 0; j < board.Columns; j++)
                 {
-                    if (board.PiecePosition(i, j) == null)
+                    if (board.PiecePositionUsingCoordinates(i, j) == null)
                         Console.Write("- ");
                     else
-                        Console.Write(board.PiecePosition(i, j) + " ");
+                        Console.Write(board.PiecePositionUsingCoordinates(i, j) + " ");
                 }
 
                 Console.WriteLine();
