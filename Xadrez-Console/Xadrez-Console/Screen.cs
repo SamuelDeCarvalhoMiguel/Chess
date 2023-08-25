@@ -15,7 +15,7 @@ namespace Xadrez_Console
                     if (board.PiecePosition(i, j) == null)
                         Console.Write("- ");
                     else
-                        Console.Write(board.PiecePosition(i, j) + "");
+                        Console.Write(board.PiecePosition(i, j) + " ");
                 }
 
                 Console.WriteLine();

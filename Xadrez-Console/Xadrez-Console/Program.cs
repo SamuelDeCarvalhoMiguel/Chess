@@ -1,17 +1,22 @@
 ﻿using System;
 using Board;
+using Chess;
 
 namespace Xadrez_Console
 {
-    class Program
+  class Program
+  {
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
 
-            GameBoard board = new GameBoard(8, 8);
+      GameBoard board = new GameBoard(8, 8);
 
-            Screen.PrintBoard(board);
+      board.PlacePiece(new Rook(board, Color.Black), new Position(0, 0));
+      board.PlacePiece(new Rook(board, Color.Black), new Position(1, 3));
+      board.PlacePiece(new King(board, Color.Black), new Position(2, 4));
 
-        }
+      Screen.PrintBoard(board);
+
     }
+  }
 }
