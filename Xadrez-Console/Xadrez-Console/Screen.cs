@@ -1,5 +1,6 @@
 ﻿using System;
 using Board;
+using Chess;
 
 namespace Xadrez_Console
 {
@@ -27,6 +28,17 @@ namespace Xadrez_Console
       Console.WriteLine("  A B C D E F G H");
     }
 
+    public static ChessPosition ReadPiecePosition()
+    {
+
+      string selectedPosition = Console.ReadLine();
+
+      char Column = selectedPosition[0];
+      int Line = int.Parse(selectedPosition[1] + "");
+
+      return new ChessPosition(Column, Line);
+    }
+
     public static void PrintPiece(Piece piece)
     {
       if (piece.Color == Color.White)
@@ -34,10 +46,10 @@ namespace Xadrez_Console
 
       else
       {
-        ConsoleColor aux = Console.ForegroundColor;
+        ConsoleColor standartColor = Console.ForegroundColor;
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.Write(piece);
-        Console.ForegroundColor = aux;
+        Console.ForegroundColor = standartColor;
       }
 
     }

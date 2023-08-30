@@ -16,5 +16,10 @@
     public int AmountOfMoves { get; protected set; }
     public GameBoard Board { get; protected set; }
 
+    public void AddAmountOfMoves()
+    {
+      AmountOfMoves++;
+    }
+
   }
 }
