@@ -21,7 +21,14 @@ namespace Xadrez_Console
           Console.WriteLine();
           Console.Write("Origin: ");
           Position origin = Screen.ReadPiecePosition().ToPosition();
-          Console.Write("Origin: ");
+
+          bool[,] possiblePositions = match.MatchBoard.ValidatePiecePositionUsingObject(origin).VerifyPossibleMoves();
+
+          Console.Clear();
+          Screen.PrintBoard(match.MatchBoard,possiblePositions);
+
+          Console.WriteLine();
+          Console.Write("Destination: ");
           Position destination = Screen.ReadPiecePosition().ToPosition();
 
           match.MakeAMove(origin, destination);

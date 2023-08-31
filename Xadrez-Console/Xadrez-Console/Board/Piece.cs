@@ -1,6 +1,6 @@
 ﻿namespace Board
 {
-  class Piece
+  abstract class Piece
   {
 
     public Piece() { }
@@ -21,5 +21,6 @@
       AmountOfMoves++;
     }
 
+    public abstract bool[,] VerifyPossibleMoves();
   }
 }

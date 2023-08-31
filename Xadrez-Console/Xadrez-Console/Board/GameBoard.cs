@@ -13,11 +13,11 @@
     public int Columns { get; set; }
     private Piece[,] Pieces;
 
-    public Piece PiecePositionUsingCoordinates(int line, int column)
+    public Piece ValidatePiecePositionUsingCoordinates(int line, int column)
     {
       return Pieces[line, column];
     }
-    public Piece PiecePositionUsingObject(Position position)
+    public Piece ValidatePiecePositionUsingObject(Position position)
     {
       return Pieces[position.Line, position.Column];
     }
@@ -25,7 +25,7 @@
     public bool VerifyIfPieceExist(Position position)
     {
       ValidatePosition(position);
-      return PiecePositionUsingObject(position) != null;
+      return ValidatePiecePositionUsingObject(position) != null;
     }
 
     public void MovePiece(Piece piece, Position position)
@@ -39,10 +39,10 @@
 
     public Piece RemovePiece(Position position)
     {
-      if (PiecePositionUsingObject(position) == null)
+      if (ValidatePiecePositionUsingObject(position) == null)
         return null;
 
-      Piece pieceRemover = PiecePositionUsingObject(position);
+      Piece pieceRemover = ValidatePiecePositionUsingObject(position);
       pieceRemover.Position = null;
       Pieces[position.Line, position.Column] = null;
       return pieceRemover;
@@ -50,7 +50,7 @@
 
     public bool AvailablePosition(Position position)
     {
-      if (position.Line < 0 || position.Line > Lines || position.Column < 0 || position.Column > Columns)
+      if (position.Line < 0 || position.Line >= Lines || position.Column < 0 || position.Column >= Columns)
         return false;
 
       return true;
