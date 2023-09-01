@@ -21,6 +21,24 @@
       AmountOfMoves++;
     }
 
+    public bool VerifyIfExistAPossibleMove()
+    {
+      bool[,] possibleMovesMatrices = VerifyPossibleMoves();
+      for (int i = 0; i < Board.Lines; i++)
+      {
+        for (int j = 0; j < Board.Lines; j++)
+        {
+          if (possibleMovesMatrices[i, j])
+            return true;
+        }
+      }
+      return false;
+    }
+
+    public bool PieceCanMoveToThisPosition(Position position)
+    {
+      return VerifyPossibleMoves()[position.Line, position.Column];
+    }
     public abstract bool[,] VerifyPossibleMoves();
   }
 }

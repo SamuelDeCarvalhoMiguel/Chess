@@ -15,8 +15,8 @@ namespace Chess
     }
 
     public GameBoard MatchBoard { get; private set; }
-    private int Turn;
-    private Color CurrentPlayer;
+    public int Turn { get; private set; }
+    public Color CurrentPlayer { get; private set; }
     public bool EndGame { get; private set; }
 
     public void MakeAMove(Position origin, Position destination)
@@ -26,6 +26,38 @@ namespace Chess
       Piece CapturedPiece = MatchBoard.RemovePiece(destination);
       EndGame = false;
       MatchBoard.MovePiece(piece, destination);
+    }
+
+    public void PeformsAMove(Position origin, Position destination)
+    {
+      MakeAMove(origin, destination);
+      Turn++;
+      ChangePlayersTurn();
+    }
+
+    public void ValidateOriginPosition(Position position)
+    {
+      if (MatchBoard.ValidatePiecePositionUsingObject(position) == null)
+        throw new BoardException("There is not a piece in this position!");
+      if (CurrentPlayer != MatchBoard.ValidatePiecePositionUsingObject(position).Color)
+        throw new BoardException("This piece is not yours!");
+      if (!MatchBoard.ValidatePiecePositionUsingObject(position).VerifyIfExistAPossibleMove())
+        throw new BoardException("There is not a possible move for this piece!");
+    }
+
+    public void ValidateDestinationPosition(Position origin, Position destination)
+    {
+      if (!MatchBoard.ValidatePiecePositionUsingObject(origin).PieceCanMoveToThisPosition(destination))
+        throw new BoardException("Invalid destination position!");
+
+    }
+
+    private void ChangePlayersTurn()
+    {
+      if (CurrentPlayer == Color.White)
+        CurrentPlayer = Color.Black;
+      else
+        CurrentPlayer = Color.White;
     }
 
     private void PlacePiece()
