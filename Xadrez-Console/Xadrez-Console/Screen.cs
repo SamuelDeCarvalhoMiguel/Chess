@@ -1,11 +1,45 @@
 ﻿using System;
 using Board;
 using Chess;
+using System.Collections.Generic;
 
 namespace Xadrez_Console
 {
   class Screen
   {
+
+    public static void PrintMatch(ChessMatch match)
+    {
+      PrintBoard(match.MatchBoard);
+      Console.WriteLine();
+      PrintCapturedPieces(match);
+      Console.WriteLine();
+      Console.WriteLine($"Turn: {match.Turn}");
+      Console.WriteLine($"Waiting for a move: {match.CurrentPlayer}");
+    }
+
+    public static void PrintCapturedPieces(ChessMatch match)
+    {
+      Console.WriteLine("Captured pieces: ");
+      Console.Write("White: ");
+      PrintSet(match.CapturedPiecesSet(Color.White));
+      Console.Write("Black: ");
+
+      ConsoleColor standartColor = Console.ForegroundColor;
+      Console.ForegroundColor = ConsoleColor.Yellow;
+      PrintSet(match.CapturedPiecesSet(Color.Black));
+      Console.ForegroundColor = standartColor;
+    }
+
+    public static void PrintSet(HashSet<Piece> set)
+    {
+      Console.Write("[");
+      foreach (Piece piece in set)
+      {
+        Console.Write(piece + " ");
+      }
+      Console.WriteLine("]");
+    }
 
     public static void PrintBoard(GameBoard board)
     {
@@ -14,7 +48,7 @@ namespace Xadrez_Console
         Console.Write(8 - i + " ");
         for (int j = 0; j < board.Columns; j++)
         {
-            Screen.PrintPiece(board.ValidatePiecePositionUsingCoordinates((int)i, (int)j));
+          Screen.PrintPiece(board.ValidatePiecePositionUsingCoordinates((int)i, (int)j));
         }
         Console.WriteLine();
       }
@@ -34,7 +68,7 @@ namespace Xadrez_Console
         {
           if (possiblePositions[i, j])
             Console.BackgroundColor = alternativeBackGround;
-          else 
+          else
             Console.BackgroundColor = originalBackGround;
 
           Screen.PrintPiece(board.ValidatePiecePositionUsingCoordinates((int)i, (int)j));
