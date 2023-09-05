@@ -21,6 +21,11 @@
       AmountOfMoves++;
     }
 
+    public void SubAmountOfMoves()
+    {
+      AmountOfMoves--;
+    }
+
     public bool VerifyIfExistAPossibleMove()
     {
       bool[,] possibleMovesMatrices = VerifyPossibleMoves();
