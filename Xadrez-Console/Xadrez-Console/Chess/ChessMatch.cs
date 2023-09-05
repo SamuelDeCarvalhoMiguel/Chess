@@ -48,7 +48,6 @@ namespace Chess
         MatchBoard.MovePiece(capturedPiece, destination);
         CapturedPieces.Remove(capturedPiece);
       }
-
       MatchBoard.MovePiece(piece, origin);
     }
 
