@@ -40,7 +40,7 @@
       return false;
     }
 
-    public bool PieceCanMoveToThisPosition(Position position)
+    public bool PieceCanMoveToThisDestination(Position position)
     {
       return VerifyPossibleMoves()[position.Line, position.Column];
     }
