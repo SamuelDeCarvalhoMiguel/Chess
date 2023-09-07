@@ -15,9 +15,19 @@ namespace Xadrez_Console
       PrintCapturedPieces(match);
       Console.WriteLine();
       Console.WriteLine($"Turn: {match.Turn}");
-      Console.WriteLine($"Waiting for a move: {match.CurrentPlayer}");
-      if (match.Check)
-      Console.WriteLine("CHEK!");
+
+      if (!match.EndGame)
+      {
+        Console.WriteLine($"Waiting for a move: {match.CurrentPlayer}");
+
+        if (match.Check)
+          Console.WriteLine("CHEK!");
+      }
+      else
+      {
+        Console.WriteLine("CHEKMATE!");
+        Console.WriteLine($"Winner: {match.CurrentPlayer}");
+      }
     }
 
     public static void PrintCapturedPieces(ChessMatch match)

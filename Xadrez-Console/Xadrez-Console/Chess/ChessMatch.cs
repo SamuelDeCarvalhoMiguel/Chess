@@ -55,19 +55,24 @@ namespace Chess
     {
       Piece capturedPiece = MakeAMove(origin, destination);
 
-      if (IsInCheck(CurrentPlayer))
+      if (CheckTest(CurrentPlayer))
       {
         UndoAMove(origin, destination, capturedPiece);
         throw new BoardException("You can't put yourself in check!");
       }
 
-      if (IsInCheck(Adversary(CurrentPlayer)))
+      if (CheckTest(Adversary(CurrentPlayer)))
         Check = true;
       else
         Check = false;
 
-      Turn++;
-      ChangePlayersTurn();
+      if (CheckmateTest(Adversary(CurrentPlayer)))
+        EndGame = true;
+      else
+      {
+        Turn++;
+        ChangePlayersTurn();
+      }
     }
 
     public void ValidateOriginPosition(Position position)
@@ -138,7 +143,7 @@ namespace Chess
       return null;
     }
 
-    public bool IsInCheck(Color color)
+    public bool CheckTest(Color color)
     {
       Piece king = VerifyIfPieceIsKing(color);
       if (king == null)
@@ -155,6 +160,34 @@ namespace Chess
       return false;
     }
 
+    public bool CheckmateTest(Color color)
+    {
+      if (!CheckTest(color))
+        return false;
+
+      foreach (Piece piece in PiecesInGame(color))
+      {
+        bool[,] matrice = piece.VerifyPossibleMoves();
+        for (int i = 0; i < MatchBoard.Lines; i++)
+        {
+          for (int j = 0; j < MatchBoard.Columns; j++)
+          {
+            if (matrice[i, j])
+            {
+              Position destination = new Position(i, j);
+              Piece capturedPiece = MakeAMove(piece.Position, destination);
+              bool checkTest = CheckTest(color);
+              UndoAMove(piece.Position, destination, capturedPiece);
+
+              if (!checkTest)
+                return false;
+            }
+          }
+        }
+      }
+      return true;
+    }
+
     public void PlaceNewPiece(char column, int line, Piece piece)
     {
       MatchBoard.MovePiece(piece, new ChessPosition(column, line).ToPosition());
@@ -164,18 +197,11 @@ namespace Chess
     private void PlacePiece()
     {
       PlaceNewPiece('c', 1, new Rook(MatchBoard, Color.White));
-      PlaceNewPiece('c', 2, new Rook(MatchBoard, Color.White));
-      PlaceNewPiece('d', 2, new Rook(MatchBoard, Color.White));
-      PlaceNewPiece('e', 2, new Rook(MatchBoard, Color.White));
-      PlaceNewPiece('e', 1, new Rook(MatchBoard, Color.White));
+      PlaceNewPiece('h', 7, new Rook(MatchBoard, Color.White));
       PlaceNewPiece('d', 1, new King(MatchBoard, Color.White));
 
-      PlaceNewPiece('c', 7, new Rook(MatchBoard, Color.Black));
-      PlaceNewPiece('c', 8, new Rook(MatchBoard, Color.Black));
-      PlaceNewPiece('d', 7, new Rook(MatchBoard, Color.Black));
-      PlaceNewPiece('e', 8, new Rook(MatchBoard, Color.Black));
-      PlaceNewPiece('e', 7, new Rook(MatchBoard, Color.Black));
-      PlaceNewPiece('d', 8, new King(MatchBoard, Color.Black));
+      PlaceNewPiece('b', 8, new Rook(MatchBoard, Color.Black));
+      PlaceNewPiece('a', 8, new King(MatchBoard, Color.Black));
 
     }
   }
