@@ -175,7 +175,7 @@ namespace Chess
             if (matrice[i, j])
             {
               Position destination = new Position(i, j);
-              Piece capturedPiece = MakeAMove(piece.Position, destination);
+              Piece capturedPiece = MakeAMove(origin, destination);
               bool checkTest = CheckTest(color);
               UndoAMove(piece.Position, destination, capturedPiece);
 
