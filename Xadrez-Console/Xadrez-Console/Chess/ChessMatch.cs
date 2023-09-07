@@ -174,10 +174,11 @@ namespace Chess
           {
             if (matrice[i, j])
             {
+              Position origin = piece.Position;
               Position destination = new Position(i, j);
               Piece capturedPiece = MakeAMove(origin, destination);
               bool checkTest = CheckTest(color);
-              UndoAMove(piece.Position, destination, capturedPiece);
+              UndoAMove(origin, destination, capturedPiece);
 
               if (!checkTest)
                 return false;
@@ -202,7 +203,6 @@ namespace Chess
 
       PlaceNewPiece('b', 8, new Rook(MatchBoard, Color.Black));
       PlaceNewPiece('a', 8, new King(MatchBoard, Color.Black));
-
     }
   }
 }
