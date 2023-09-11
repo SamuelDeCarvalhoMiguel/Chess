@@ -35,7 +35,7 @@ namespace Xadrez_Console
             Position destination = Screen.ReadPiecePosition().ToPosition();
             match.ValidateDestinationPosition(origin, destination);
 
-            match.PeformsAMove(origin, destination);
+            match.PeformsAPlay(origin, destination);
           }
           catch (BoardException exception)
           {

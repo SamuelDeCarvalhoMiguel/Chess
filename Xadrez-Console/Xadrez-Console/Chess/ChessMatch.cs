@@ -36,6 +36,27 @@ namespace Chess
       MatchBoard.MovePiece(piece, destination);
       if (capturedPiece != null)
         CapturedPieces.Add(capturedPiece);
+
+      //Small Castle
+      if (piece is King && destination.Column == origin.Column + 2)
+      {
+        Position rookOrigin = new Position(origin.Line, origin.Column + 3);
+        Position rookDestination = new Position(origin.Line, origin.Column + 1);
+        Piece rook = MatchBoard.RemovePiece(rookOrigin);
+        rook.AddAmountOfMoves();
+        MatchBoard.MovePiece(rook, rookDestination);
+      }
+
+      //Big Castle
+      if (piece is King && destination.Column == origin.Column - 2)
+      {
+        Position rookOrigin = new Position(origin.Line, origin.Column - 4);
+        Position rookDestination = new Position(origin.Line, origin.Column - 1);
+        Piece rook = MatchBoard.RemovePiece(rookOrigin);
+        rook.AddAmountOfMoves();
+        MatchBoard.MovePiece(rook, rookDestination);
+      }
+
       return capturedPiece;
     }
 
@@ -49,9 +70,29 @@ namespace Chess
         CapturedPieces.Remove(capturedPiece);
       }
       MatchBoard.MovePiece(piece, origin);
+
+      //Small Castle
+      if (piece is King && destination.Column == origin.Column + 2)
+      {
+        Position rookOrigin = new Position(origin.Line, origin.Column + 3);
+        Position rookDestination = new Position(origin.Line, origin.Column + 1);
+        Piece rook = MatchBoard.RemovePiece(rookDestination);
+        rook.SubAmountOfMoves();
+        MatchBoard.MovePiece(rook, rookOrigin);
+      }
+
+      //Big Castle
+      if (piece is King && destination.Column == origin.Column - 2)
+      {
+        Position rookOrigin = new Position(origin.Line, origin.Column - 4);
+        Position rookDestination = new Position(origin.Line, origin.Column - 1);
+        Piece rook = MatchBoard.RemovePiece(rookDestination);
+        rook.SubAmountOfMoves();
+        MatchBoard.MovePiece(rook, rookOrigin);
+      }
     }
 
-    public void PeformsAMove(Position origin, Position destination)
+    public void PeformsAPlay(Position origin, Position destination)
     {
       Piece capturedPiece = MakeAMove(origin, destination);
 
@@ -201,7 +242,7 @@ namespace Chess
       PlaceNewPiece('b', 1, new Knight(MatchBoard, Color.White));
       PlaceNewPiece('c', 1, new Bishop(MatchBoard, Color.White));
       PlaceNewPiece('d', 1, new Queen(MatchBoard, Color.White));
-      PlaceNewPiece('e', 1, new King(MatchBoard, Color.White));
+      PlaceNewPiece('e', 1, new King(MatchBoard, Color.White, this));
       PlaceNewPiece('f', 1, new Bishop(MatchBoard, Color.White));
       PlaceNewPiece('g', 1, new Knight(MatchBoard, Color.White));
       PlaceNewPiece('h', 1, new Rook(MatchBoard, Color.White));
@@ -218,7 +259,7 @@ namespace Chess
       PlaceNewPiece('b', 8, new Knight(MatchBoard, Color.Black));
       PlaceNewPiece('c', 8, new Bishop(MatchBoard, Color.Black));
       PlaceNewPiece('d', 8, new Queen(MatchBoard, Color.Black));
-      PlaceNewPiece('e', 8, new King(MatchBoard, Color.Black));
+      PlaceNewPiece('e', 8, new King(MatchBoard, Color.Black, this));
       PlaceNewPiece('f', 8, new Bishop(MatchBoard, Color.Black));
       PlaceNewPiece('g', 8, new Knight(MatchBoard, Color.Black));
       PlaceNewPiece('h', 8, new Rook(MatchBoard, Color.Black));
