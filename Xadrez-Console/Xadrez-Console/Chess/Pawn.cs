@@ -50,6 +50,7 @@ namespace Chess
         position.DefineValuesForThisPosition(Position.Line - 1, Position.Column + 1);
         if (Board.AvailablePosition(position) && EnemyExist(position))
           boardHouses[position.Line, position.Column] = true;
+        position.DefineValuesForThisPosition(Position.Line, Position.Column);
 
         //En Passant
         if (position.Line == 3)
@@ -64,7 +65,7 @@ namespace Chess
         }
       }
 
-      else if (Color == Color.Black)
+      else 
       {
         position.DefineValuesForThisPosition(Position.Line + 1, Position.Column);
         if (Board.AvailablePosition(position) && EmptyPosition(position))
@@ -81,6 +82,7 @@ namespace Chess
         position.DefineValuesForThisPosition(Position.Line + 1, Position.Column - 1);
         if (Board.AvailablePosition(position) && EnemyExist(position))
           boardHouses[position.Line, position.Column] = true;
+        position.DefineValuesForThisPosition(Position.Line, Position.Column);
 
         //En Passant
         if (position.Line == 4)
