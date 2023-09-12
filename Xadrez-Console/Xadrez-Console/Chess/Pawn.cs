@@ -5,7 +5,11 @@ namespace Chess
 {
   class Pawn : Piece 
   {
-    public Pawn(GameBoard board, Color color) : base (board, color) { }
+    private ChessMatch Match;
+    public Pawn(GameBoard board, Color color, ChessMatch match) : base (board, color)
+    {
+      Match = match;
+    }
 
     public override string ToString()
     {
@@ -46,6 +50,18 @@ namespace Chess
         position.DefineValuesForThisPosition(Position.Line - 1, Position.Column + 1);
         if (Board.AvailablePosition(position) && EnemyExist(position))
           boardHouses[position.Line, position.Column] = true;
+
+        //En Passant
+        if (position.Line == 3)
+        {
+          Position pawnsLeft = new Position(position.Line, Position.Column - 1);
+          if (Board.AvailablePosition(pawnsLeft) && EnemyExist(pawnsLeft) && Board.ValidatePiecePositionUsingObject(pawnsLeft) == Match.AvaibleToEnPassant)
+            boardHouses[pawnsLeft.Line - 1, pawnsLeft.Column] = true;
+
+          Position pawnsRight = new Position(position.Line, Position.Column + 1);
+          if (Board.AvailablePosition(pawnsRight) && EnemyExist(pawnsRight) && Board.ValidatePiecePositionUsingObject(pawnsRight) == Match.AvaibleToEnPassant)
+            boardHouses[pawnsRight.Line - 1, pawnsRight.Column] = true;
+        }
       }
 
       else if (Color == Color.Black)
@@ -65,6 +81,18 @@ namespace Chess
         position.DefineValuesForThisPosition(Position.Line + 1, Position.Column - 1);
         if (Board.AvailablePosition(position) && EnemyExist(position))
           boardHouses[position.Line, position.Column] = true;
+
+        //En Passant
+        if (position.Line == 4)
+        {
+          Position pawnsLeft = new Position(position.Line, Position.Column - 1);
+          if (Board.AvailablePosition(pawnsLeft) && EnemyExist(pawnsLeft) && Board.ValidatePiecePositionUsingObject(pawnsLeft) == Match.AvaibleToEnPassant)
+            boardHouses[pawnsLeft.Line + 1, pawnsLeft.Column] = true;
+
+          Position pawnsRight = new Position(position.Line, Position.Column + 1);
+          if (Board.AvailablePosition(pawnsRight) && EnemyExist(pawnsRight) && Board.ValidatePiecePositionUsingObject(pawnsRight) == Match.AvaibleToEnPassant)
+            boardHouses[pawnsRight.Line + 1, pawnsRight.Column] = true;
+        }
       }
 
       return boardHouses;
